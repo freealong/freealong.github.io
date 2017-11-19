@@ -72,7 +72,7 @@ MathJax.Hub.Config({
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linuxwm," />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -88,18 +88,18 @@ MathJax.Hub.Config({
 
 
 
-<meta name="description" content="基本思路：先拷贝整个操作系统到目标硬盘，修改挂载的分区，在目标硬盘上安装引导。 Copying Mount the destination partitions 1sudo mount /dev/sdbX /mnt # mount sdbX for example  Copy the entire os to the ">
-<meta name="keywords" content="linuxwm">
+<meta name="description" content="基本使用示例代码：12345678910111213141516171819202122#include &amp;lt;iostream&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;chrono&amp;gt;using namespace std;v">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Backup Linux OS">
-<meta property="og:url" content="http://freealong.github.io/2017/10/14/backup_linux_os/index.html">
+<meta property="og:title" content="C++11多线程笔记">
+<meta property="og:url" content="http://freealong.github.io/2017/10/07/C++多线程编程笔记/index.html">
 <meta property="og:site_name" content="Yongqi&#39;s Blog">
-<meta property="og:description" content="基本思路：先拷贝整个操作系统到目标硬盘，修改挂载的分区，在目标硬盘上安装引导。 Copying Mount the destination partitions 1sudo mount /dev/sdbX /mnt # mount sdbX for example  Copy the entire os to the destination partitions 1rsync -avxHAX /">
+<meta property="og:description" content="基本使用示例代码：12345678910111213141516171819202122#include &amp;lt;iostream&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;chrono&amp;gt;using namespace std;void read_val(int &amp;amp;val) &amp;#123;  while (true) &amp;#123;    cin &amp;g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-08T03:17:45.000Z">
+<meta property="og:updated_time" content="2017-11-19T13:51:57.002Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Backup Linux OS">
-<meta name="twitter:description" content="基本思路：先拷贝整个操作系统到目标硬盘，修改挂载的分区，在目标硬盘上安装引导。 Copying Mount the destination partitions 1sudo mount /dev/sdbX /mnt # mount sdbX for example  Copy the entire os to the destination partitions 1rsync -avxHAX /">
+<meta name="twitter:title" content="C++11多线程笔记">
+<meta name="twitter:description" content="基本使用示例代码：12345678910111213141516171819202122#include &amp;lt;iostream&amp;gt;#include &amp;lt;thread&amp;gt;#include &amp;lt;chrono&amp;gt;using namespace std;void read_val(int &amp;amp;val) &amp;#123;  while (true) &amp;#123;    cin &amp;g">
 
 
 
@@ -120,10 +120,10 @@ MathJax.Hub.Config({
 
 
 
-  <link rel="canonical" href="http://freealong.github.io/2017/10/14/backup_linux_os/"/>
+  <link rel="canonical" href="http://freealong.github.io/2017/10/07/C++多线程编程笔记/"/>
 
 
-  <title> Backup Linux OS | Yongqi's Blog </title>
+  <title> C++11多线程笔记 | Yongqi's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +253,7 @@ MathJax.Hub.Config({
             
             
               
-                Backup Linux OS
+                C++11多线程笔记
               
             
           </h1>
@@ -265,8 +265,8 @@ MathJax.Hub.Config({
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-14T10:29:44+08:00" content="2017-10-14">
-              2017-10-14
+            <time itemprop="dateCreated" datetime="2017-10-07T12:29:44+08:00" content="2017-10-07">
+              2017-10-07
             </time>
           </span>
 
@@ -291,8 +291,8 @@ MathJax.Hub.Config({
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Technology/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Technology/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -307,8 +307,8 @@ MathJax.Hub.Config({
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/10/14/backup_linux_os/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/14/backup_linux_os/" itemprop="commentsCount"></span>
+                <a href="/2017/10/07/C++多线程编程笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/07/C++多线程编程笔记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,30 +331,14 @@ MathJax.Hub.Config({
       
 
       
-        <p>基本思路：先拷贝整个操作系统到目标硬盘，修改挂载的分区，在目标硬盘上安装引导。</p>
-<h1 id="Copying"><a href="#Copying" class="headerlink" title="Copying"></a>Copying</h1><ul>
-<li><p>Mount the destination partitions</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount /dev/sdbX /mnt <span class="comment"># mount sdbX for example</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Copy the entire os to the destination partitions</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avxHAX / /mnt</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h1><ul>
-<li><p>Find the destination partition’s UUID</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l /dev/disk/by-uuid/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Change uuid in the file /mnt/etc/fstab</p>
-</li>
-</ul>
-<h1 id="Install-Grub"><a href="#Install-Grub" class="headerlink" title="Install Grub"></a>Install Grub</h1><ul>
-<li><p>Bind some system directories needed by grub</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mount --<span class="built_in">bind</span> /proc /mnt/proc</span><br><span class="line">mount --<span class="built_in">bind</span> /sys /mnt/sys</span><br><span class="line">mount --<span class="built_in">bind</span> /dev /mnt/dev</span><br><span class="line">mount --<span class="built_in">bind</span> /run /mnt/run</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Install grub on destination hard drive</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chroot /mnt</span><br><span class="line">grub-install /dev/sdb</span><br><span class="line">update-grub2</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+        <h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>示例代码：<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace std<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">void read_val(<span class="built_in">int</span> &amp;val) &#123;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    cin &gt;&gt; val<span class="comment">;</span></span><br><span class="line">    this_thread::sleep_for(chrono::seconds(<span class="number">1</span>))<span class="comment">;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main(<span class="built_in">int</span> argc, char** argv) &#123;</span><br><span class="line">  <span class="built_in">int</span> val(<span class="number">0</span>)<span class="comment">;</span></span><br><span class="line">  thread read_thread(read_val, ref(val))<span class="comment">;</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    cout &lt;&lt; val &lt;&lt; endl<span class="comment">;;</span></span><br><span class="line">    this_thread::sleep_for(chrono::seconds(<span class="number">1</span>))<span class="comment">;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用g++编译：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -<span class="keyword">std</span>=c++<span class="number">11</span> <span class="keyword">test</span>.cpp -lpthread -o <span class="keyword">test</span></span><br></pre></td></tr></table></figure></p>
+<p>thread类构造函数第一个参数为线程所跑函数名，后面接所跑函数参数，需要注意的是引用类型需要通过std::ref传入。</p>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><p>可以通过定义一个全局的mutex类，通过该类的lock()和unlock()进行上锁和解锁，但如果在lock和unlock之间程序发生异常容易造成死锁。因此，通常我们使用lock_guard类来控制mutex，利用lock_guard的析构函数来解锁。unique_lock相比与lock_guard提供了更多接口，并且可以用来处理多个锁的上锁解锁情况，避免出现多个锁造成的死锁。</p>
+<h2 id="Lazy-Initialization"><a href="#Lazy-Initialization" class="headerlink" title="Lazy Initialization"></a>Lazy Initialization</h2><p>代码示例：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::once_flag flag;</span><br><span class="line">std::call_once(flag, [<span class="string">&amp;</span>](<span class="link"></span>)&#123;return;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>通过使用call_once可以实现只调用一次所给函数，并且保证了线程安全。</p>
+<h2 id="条件变量"><a href="#条件变量" class="headerlink" title="条件变量"></a>条件变量</h2><p>条件变量可以控制线程的执行顺序，通过定义全局的条件变量std::condition_variable，在线程中分别通过notify_once/notify_all和wait函数触发和等待触发相关操作。</p>
+<h2 id="线程间数据输入与输出"><a href="#线程间数据输入与输出" class="headerlink" title="线程间数据输入与输出"></a>线程间数据输入与输出</h2><p>通过std::async函数和future、promise变量可以实现线程间数据输入输出。</p>
 
       
     </div>
@@ -398,7 +382,7 @@ MathJax.Hub.Config({
       
         <div class="post-tags">
           
-            <a href="/tags/linuxwm/" rel="tag">#linuxwm</a>
+            <a href="/tags/C/" rel="tag">#C++</a>
           
         </div>
       
@@ -407,16 +391,16 @@ MathJax.Hub.Config({
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/07/C++多线程编程笔记/" rel="next" title="C++11多线程笔记">
-                <i class="fa fa-chevron-left"></i> C++11多线程笔记
+              <a href="/2016/11/14/i3配置/" rel="next" title="i3-wm 配置">
+                <i class="fa fa-chevron-left"></i> i3-wm 配置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/27/openmp/" rel="prev" title="OpenMP 笔记">
-                OpenMP 笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/14/backup_linux_os/" rel="prev" title="Backup Linux OS">
+                Backup Linux OS <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -432,10 +416,10 @@ MathJax.Hub.Config({
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/10/14/backup_linux_os/"
-     data-title="Backup Linux OS"
+        <div class="ds-share flat" data-thread-key="2017/10/07/C++多线程编程笔记/"
+     data-title="C++11多线程笔记"
      data-content=""
-     data-url="http://freealong.github.io/2017/10/14/backup_linux_os/">
+     data-url="http://freealong.github.io/2017/10/07/C++多线程编程笔记/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -462,8 +446,8 @@ MathJax.Hub.Config({
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/10/14/backup_linux_os/"
-           data-title="Backup Linux OS" data-url="http://freealong.github.io/2017/10/14/backup_linux_os/">
+      <div class="ds-thread" data-thread-key="2017/10/07/C++多线程编程笔记/"
+           data-title="C++11多线程笔记" data-url="http://freealong.github.io/2017/10/07/C++多线程编程笔记/">
       </div>
     
   </div>
@@ -574,7 +558,7 @@ MathJax.Hub.Config({
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Copying"><span class="nav-number">1.</span> <span class="nav-text">Copying</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuration"><span class="nav-number">2.</span> <span class="nav-text">Configuration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-Grub"><span class="nav-number">3.</span> <span class="nav-text">Install Grub</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁"><span class="nav-number">2.</span> <span class="nav-text">锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lazy-Initialization"><span class="nav-number">3.</span> <span class="nav-text">Lazy Initialization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件变量"><span class="nav-number">4.</span> <span class="nav-text">条件变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程间数据输入与输出"><span class="nav-number">5.</span> <span class="nav-text">线程间数据输入与输出</span></a></li></ol></div>
             
           </div>
         </section>
