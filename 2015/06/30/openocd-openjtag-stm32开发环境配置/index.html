@@ -1,0 +1,755 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前几天重新在linux(Fedora 21 x64)下搭建了stm32的交叉开发环境，特此记录以下，方便以后查看。 openocd 安装与配置安装openocd很简单，可直接在源里安装，不嫌麻烦可以自己下载源码编译。源里直接安装openocd1sudo yum install openocd 运行openocd需要一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openocd+openjtag+stm32开发环境配置">
+<meta property="og:url" content="http://freealong.github.io/2015/06/30/openocd-openjtag-stm32开发环境配置/index.html">
+<meta property="og:site_name" content="Yongqi&#39;s Blog">
+<meta property="og:description" content="前几天重新在linux(Fedora 21 x64)下搭建了stm32的交叉开发环境，特此记录以下，方便以后查看。 openocd 安装与配置安装openocd很简单，可直接在源里安装，不嫌麻烦可以自己下载源码编译。源里直接安装openocd1sudo yum install openocd 运行openocd需要一个配置文件openocd.cfg，命令行下默认指定当前目录下的openocd.cf">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-10-07T02:46:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="openocd+openjtag+stm32开发环境配置">
+<meta name="twitter:description" content="前几天重新在linux(Fedora 21 x64)下搭建了stm32的交叉开发环境，特此记录以下，方便以后查看。 openocd 安装与配置安装openocd很简单，可直接在源里安装，不嫌麻烦可以自己下载源码编译。源里直接安装openocd1sudo yum install openocd 运行openocd需要一个配置文件openocd.cfg，命令行下默认指定当前目录下的openocd.cf">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://freealong.github.io/2015/06/30/openocd-openjtag-stm32开发环境配置/"/>
+
+
+  <title> openocd+openjtag+stm32开发环境配置 | Yongqi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Yongqi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                openocd+openjtag+stm32开发环境配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-30T21:42:23+08:00" content="2015-06-30">
+              2015-06-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Technology/MCU/" itemprop="url" rel="index">
+                    <span itemprop="name">MCU</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/30/openocd-openjtag-stm32开发环境配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/30/openocd-openjtag-stm32开发环境配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前几天重新在linux(Fedora 21 x64)下搭建了stm32的交叉开发环境，特此记录以下，方便以后查看。</p>
+<h1 id="openocd-安装与配置"><a href="#openocd-安装与配置" class="headerlink" title="openocd 安装与配置"></a>openocd 安装与配置</h1><p>安装openocd很简单，可直接在源里安装，不嫌麻烦可以自己下载源码编译。源里直接安装openocd<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum <span class="keyword">install</span> openocd</span><br></pre></td></tr></table></figure></p>
+<p>运行openocd需要一个配置文件openocd.cfg，命令行下默认指定当前目录下的openocd.cfg,也可以通过-f参数指定配置文件。具体配置文件如下：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#port</span></span><br><span class="line">telnet_port 4444</span><br><span class="line">tcl_port 6666</span><br><span class="line">gdb_port 3333</span><br><span class="line"></span><br><span class="line"><span class="comment">#interface</span></span><br><span class="line">interface ftdi</span><br><span class="line">ftdi_device_desc <span class="string">"USB&lt;=&gt;JTAG&amp;RS232"</span></span><br><span class="line">ftdi_vid_pid 0x1457 0x5118</span><br><span class="line"></span><br><span class="line">ftdi_layout_init 0x0c08 0x0f1b</span><br><span class="line">ftdi_layout_signal nTRST -data 0x0100 -noe 0x0400</span><br><span class="line">ftdi_layout_signal nSRST -data 0x0200 -noe 0x0800</span><br><span class="line"></span><br><span class="line"><span class="comment">#board</span></span><br><span class="line"><span class="builtin-name">set</span> WORKAREASIZE 0x8000</span><br><span class="line"></span><br><span class="line"><span class="comment">#target</span></span><br><span class="line">source [<span class="builtin-name">find</span> target/stm32f1x.cfg]</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># configure FSMC Bank 1 (NOR/PSRAM Bank 2) NOR flash</span></span><br><span class="line"><span class="comment"># M29W128GL70ZA6E</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="builtin-name">set</span> _FLASHNAME <span class="variable">$_CHIPNAME</span>.norflash</span><br><span class="line">flash bank <span class="variable">$_FLASHNAME</span> cfi 0x64000000 0x01000000 2 2 <span class="variable">$_TARGETNAME</span></span><br><span class="line"></span><br><span class="line">proc stm32_enable_fsmc &#123;&#125; &#123;</span><br><span class="line"></span><br><span class="line">        echo <span class="string">"Enabling FSMC Bank 1 (NOR/PSRAM Bank 2)"</span></span><br><span class="line"></span><br><span class="line">        # <span class="builtin-name">enable</span> gpio (defg) clocks <span class="keyword">for</span> fsmc</span><br><span class="line">        # RCC_APB2ENR</span><br><span class="line">        mww 0x40021018 0x000001E0</span><br><span class="line"></span><br><span class="line">        # <span class="builtin-name">enable</span> fsmc clock</span><br><span class="line">        # RCC_AHBENR</span><br><span class="line">        mww 0x40021014 0x00000114</span><br><span class="line"></span><br><span class="line">        # configure gpio <span class="keyword">to</span> alternate function</span><br><span class="line">        # GPIOD_CRL</span><br><span class="line">        mww 0x40011400 0x44BB44BB</span><br><span class="line">        # GPIOD_CRH</span><br><span class="line">        mww 0x40011404 0xBBBBBBBB</span><br><span class="line"></span><br><span class="line">        # GPIOE_CRL</span><br><span class="line">        mww 0x40011800 0xBBBBB444</span><br><span class="line">        # GPIOE_CRH</span><br><span class="line">        mww 0x40011804 0xBBBBBBBB</span><br><span class="line"></span><br><span class="line">        # GPIOF_CRL</span><br><span class="line">        mww 0x40011C00 0x44BBBBBB</span><br><span class="line">        # GPIOF_CRH</span><br><span class="line">        mww 0x40011C04 0xBBBB4444</span><br><span class="line"></span><br><span class="line">        # GPIOG_CRL</span><br><span class="line">        mww 0x40012000 0x44BBBBBB</span><br><span class="line">        # GPIOG_CRH</span><br><span class="line">        mww 0x40012004 0x444444B4</span><br><span class="line"></span><br><span class="line">        # setup fsmc timings</span><br><span class="line">        # FSMC_BCR1</span><br><span class="line">        mww 0xA0000008 0x00001058</span><br><span class="line"></span><br><span class="line">        # FSMC_BTR1</span><br><span class="line">        mww 0xA000000C 0x10000502</span><br><span class="line"></span><br><span class="line">        # FSMC_BCR1 - <span class="builtin-name">enable</span> fsmc</span><br><span class="line">        mww 0xA0000008 0x00001059</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$_TARGETNAME</span> configure -event reset-init &#123;</span><br><span class="line">        stm32_enable_fsmc</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置文件主要包括四部分：</p>
+<ul>
+<li><p>端口设置<br>主要是telent和gdb登陆openocd的端口。</p>
+</li>
+<li><p>接口设置<br>主要配置openocd连接下载器的接口，可根据所购买的下载器复制/usr/share/openocd/scripts/interface相应的文件。具体到本人在淘宝买的野鸡牌openjtag下载器配置方法如下：</p>
+</li>
+</ul>
+<p>由于openocd版本问题，与电脑通过usb相连相应的接口文件在interface/ftdi下，观察以下ftdi目录下文件，openjatgkey.cfg文件即有可能是所需的，其内容如下<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface ftdi</span><br><span class="line">ftdi_device_desc <span class="string">"Amontec JTAGkey"</span></span><br><span class="line">ftdi_vid_pid <span class="number">0x0403</span> <span class="number">0xcff8</span></span><br><span class="line"></span><br><span class="line">ftdi_layout_init <span class="number">0x0c08</span> <span class="number">0x0f1b</span></span><br><span class="line">ftdi_layout_signal nTRST -data <span class="number">0x0100</span> -noe <span class="number">0x0400</span></span><br><span class="line">ftdi_layout_signal nSRST -data <span class="number">0x0200</span> -noe <span class="number">0x0800</span></span><br></pre></td></tr></table></figure></p>
+<p>问题是野鸡牌openjatg对于上述配置文件并不能适用，需要改以下两处：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ftdi_device_desc <span class="string">"USB&lt;=&gt;JTAG&amp;RS232"</span></span><br><span class="line">ftdi_vid_pid <span class="number">0x1457</span> <span class="number">0x5118</span></span><br></pre></td></tr></table></figure></p>
+<p>以上两处信息插上openjtag通过dmesg命令可查看设备信息<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[ 7122.745224] usb 2-1.2: new full-speed USB device number 6 using ehci-pci</span><br><span class="line">[ 7122.837596] usb 2-1.2: New USB device found, <span class="attribute">idVendor</span>=1457, <span class="attribute">idProduct</span>=5118</span><br><span class="line">[ 7122.837607] usb 2-1.2: New USB device strings: <span class="attribute">Mfr</span>=1, <span class="attribute">Product</span>=2, <span class="attribute">SerialNumber</span>=0</span><br><span class="line">[ 7122.837613] usb 2-1.2: Product: USB&lt;=&gt;JTAG&amp;RS232</span><br><span class="line">[ 7122.837618] usb 2-1.2: Manufacturer: www.100ask.net</span><br><span class="line">[ 7122.956095] usbcore: registered new<span class="built_in"> interface </span>driver ftdi_sio</span><br><span class="line">[ 7122.956136] usbserial: USB Serial support registered <span class="keyword">for</span> FTDI USB Serial Device</span><br><span class="line">[ 7122.956370] usb 2-1.2: Ignoring serial<span class="built_in"> port </span>reserved <span class="keyword">for</span> JTAG</span><br><span class="line">[ 7122.956448] ftdi_sio 2-1.2:1.1: FTDI USB Serial Device converter detected</span><br><span class="line">[ 7122.956521] usb 2-1.2: Detected FT2232C</span><br><span class="line">[ 7122.958430] usb 2-1.2: FTDI USB Serial Device converter now attached <span class="keyword">to</span> ttyUSB0</span><br></pre></td></tr></table></figure></p>
+<p>ftdi_device_desc即为Product值，ftdi_vid_pid即为idVendor和idProduct值。</p>
+<ul>
+<li><p>开发板设置<br>所采用的是stm32f103ZET6，/usr/share/openocd/scripts/board目录下的stm3210e_eval.cfg文件正好是stm32f103ZET6的，其中也设置好了target。</p>
+</li>
+<li><p>目标设置<br>直接拷贝了/usr/share/openocd/scripts/target目录下的stm32f1x.cfg文件。</p>
+</li>
+</ul>
+<h1 id="openocd-运行权限问题"><a href="#openocd-运行权限问题" class="headerlink" title="openocd 运行权限问题"></a>openocd 运行权限问题</h1><p>openocd需要root权限才可以打开下载器设备，解决方法是利用udev规则，安装完openocd，会在/usr/lib/udev/rules.d目录下生成一个99-openocd.rules，其中文件名前面的数字表示rules执行先后顺序，数字越大越晚执行。其实一开始我先在/etc/udev/下自己写了个rules文件，然而一直不管用，后来才发现是被99-openocd.rules文件覆盖掉了。打开99-openocd.rules文件找到对应设备，修改权限即可，注意其中的GROUP=”plugdev”其实是ubuntu thing，fedora上根本没有plugdev用户组，其实也不用管group，只要把当前用户加到和root同一个用户组下。</p>
+<h1 id="telnet-登陆"><a href="#telnet-登陆" class="headerlink" title="telnet 登陆"></a>telnet 登陆</h1><p>使用以下命令登陆openocd：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet localhost <span class="number">4444</span></span><br></pre></td></tr></table></figure></p>
+<p>登陆后下载烧录程序的命令如下：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reset halt</span><br><span class="line">flash probe <span class="number">0</span></span><br><span class="line">stm32f1x mass_erase <span class="number">0</span></span><br><span class="line">flash write_bank <span class="number">0</span> main.bin <span class="number">0</span></span><br><span class="line">reset run</span><br></pre></td></tr></table></figure></p>
+<h1 id="GDB-登陆调试"><a href="#GDB-登陆调试" class="headerlink" title="GDB 登陆调试"></a>GDB 登陆调试</h1><p>使用arm-none-eabi-gdb调试所编译的程序，首先运行openocd，再命令行运行gdb调试程序</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">arm-none-eabi-gdb</span> <span class="selector-tag">main</span><span class="selector-class">.elf</span></span><br></pre></td></tr></table></figure>
+<p>然后登陆到openocd</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">target</span> remote localhost:3333</span><br></pre></td></tr></table></figure>
+<p>个人登陆时遇到错误信息，根据错误信息提示，在openocd配置文件中加入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb_memory_map <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
+<p>即可成功登陆。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="No. L WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="No. L Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/27/LAMP环境搭建/" rel="next" title="LAMP 环境搭建">
+                <i class="fa fa-chevron-left"></i> LAMP 环境搭建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/15/C_C++注意事项/" rel="prev" title="C C++注意事项">
+                C C++注意事项 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/06/30/openocd-openjtag-stm32开发环境配置/"
+     data-title="openocd+openjtag+stm32开发环境配置"
+     data-content=""
+     data-url="http://freealong.github.io/2015/06/30/openocd-openjtag-stm32开发环境配置/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/06/30/openocd-openjtag-stm32开发环境配置/"
+           data-title="openocd+openjtag+stm32开发环境配置" data-url="http://freealong.github.io/2015/06/30/openocd-openjtag-stm32开发环境配置/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="No. L" />
+          <p class="site-author-name" itemprop="name">No. L</p>
+          <p class="site-description motion-element" itemprop="description">The world is wide open.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/freealong" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2192566191" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#openocd-安装与配置"><span class="nav-number">1.</span> <span class="nav-text">openocd 安装与配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#openocd-运行权限问题"><span class="nav-number">2.</span> <span class="nav-text">openocd 运行权限问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#telnet-登陆"><span class="nav-number">3.</span> <span class="nav-text">telnet 登陆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GDB-登陆调试"><span class="nav-number">4.</span> <span class="nav-text">GDB 登陆调试</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">No. L</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"freealong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,823 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Google C++ Code Style Notes头文件 为了防止多重包含，所以的头文件加上 #define 保护，例如项目 foo/src/bar/baz.h 按如下方式保护: #ifndef FOO_BAR_BAZ_H_ #define FOO_BAR_BAZ_H_ ... #endif // FOO_BAR_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google C++ Code Style Notes">
+<meta property="og:url" content="http://freealong.github.io/2015/10/07/Google C++ Code Style Notes/index.html">
+<meta property="og:site_name" content="Yongqi&#39;s Blog">
+<meta property="og:description" content="Google C++ Code Style Notes头文件 为了防止多重包含，所以的头文件加上 #define 保护，例如项目 foo/src/bar/baz.h 按如下方式保护: #ifndef FOO_BAR_BAZ_H_ #define FOO_BAR_BAZ_H_ ... #endif // FOO_BAR_BAZ_H_  使用前置声明(forward declarations)减少 .">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-01-02T13:01:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google C++ Code Style Notes">
+<meta name="twitter:description" content="Google C++ Code Style Notes头文件 为了防止多重包含，所以的头文件加上 #define 保护，例如项目 foo/src/bar/baz.h 按如下方式保护: #ifndef FOO_BAR_BAZ_H_ #define FOO_BAR_BAZ_H_ ... #endif // FOO_BAR_BAZ_H_  使用前置声明(forward declarations)减少 .">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://freealong.github.io/2015/10/07/Google C++ Code Style Notes/"/>
+
+
+  <title> Google C++ Code Style Notes | Yongqi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Yongqi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Google C++ Code Style Notes
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-07T10:29:44+08:00" content="2015-10-07">
+              2015-10-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index">
+                    <span itemprop="name">Technology</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Technology/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/07/Google C++ Code Style Notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/07/Google C++ Code Style Notes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Google-C-Code-Style-Notes"><a href="#Google-C-Code-Style-Notes" class="headerlink" title="Google C++ Code Style Notes"></a>Google C++ Code Style Notes</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><ul>
+<li><p>为了防止多重包含，所以的头文件加上 #define 保护，例如项目 foo/src/bar/baz.h 按如下方式保护:</p>
+<pre><code>#ifndef FOO_BAR_BAZ_H_
+#define FOO_BAR_BAZ_H_
+...
+#endif // FOO_BAR_BAZ_H_
+</code></pre></li>
+<li><p>使用前置声明(forward declarations)减少 .h 文件中的 #include 数量</p>
+</li>
+<li><p>函数小于等于10行定义为 inline function 且放在头文件中，循环，递归，switch 不应该包含在内联函数中</p>
+</li>
+<li><p>函数参数输入在前，输出在后</p>
+</li>
+<li><p>头文件包含顺序：C库，C++库，其他库，项目内库</p>
+</li>
+</ul>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><ul>
+<li>.cc 中的不具名命名空间可避免命名冲突、限定作用域,避免直接使用 using 提示符污<br>染命名空间;</li>
+<li>尽量不用全局函数和全局变量,考虑作用域和命名空间限制,尽量单独形成编译单元;</li>
+<li>将函数变量尽可能置于最小作用域内,在声明变量时将其初始化,离第一次使用越近越好;</li>
+<li>嵌套类符合局部使用原则,只是不能在其他头文件中前置声明,尽量不要 public<br>public;</li>
+</ul>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ul>
+<li><p>不要在构造函数中实现复杂的初始化，通过Init()方法实现；只有一个参数的构造函数用 explicit 关键字修饰，避免不必要的隐式转换；大部分类并不需要可拷贝，可在 private 声明空的拷贝构造函数和赋值操作以避免编译器自动在 public 生成，赋值操作注意检测自赋值的情况</p>
+</li>
+<li><p>仅使用数据时使用 struct，其他使用 class</p>
+</li>
+<li><p>只使用公共继承，B is-a A 的情况下才令B是A的子类，has-a 的情况下使用组合；成员函数含有虚函数则析构函数也应该为虚；仅在子类访问的成员函数应为 protect，数据成员始终为 private；重新定义一个继承来的虛函数时，子类中要明确声明其为 virtual</p>
+</li>
+<li><p>多重继承(略)</p>
+</li>
+<li><p>存取函数一般内敛在头文件</p>
+</li>
+<li><p>类中声明次序：public&gt;protected&gt;private</p>
+<ol>
+<li>typedefs and enums</li>
+<li>constants</li>
+<li>constructors</li>
+<li>destructor</li>
+<li>methods</li>
+<li>data</li>
+</ol>
+</li>
+<li><p>短小精练的函数 is better, 长函数最好不要超过40行</p>
+</li>
+</ul>
+<h2 id="其他-C-特性"><a href="#其他-C-特性" class="headerlink" title="其他 C++ 特性"></a>其他 C++ 特性</h2><ul>
+<li><p>按引用传递的参数必须加上 const</p>
+</li>
+<li><p>禁止使用缺省函数参数</p>
+</li>
+<li><p>禁止使用变长数组和 alloca，使用安全的分配器，如 scoped_ptr/scoped_array</p>
+</li>
+<li><p>不要使用c风格的类型转换，使用 static_cast&lt;&gt;()</p>
+</li>
+<li><p>只在记录日志时使用流</p>
+</li>
+<li><p>一般使用前置自增，效率更高，后置自增会对表达式的值i有一次拷贝</p>
+</li>
+<li><p>尽可能多的使用 const:</p>
+<ol>
+<li>如果函数不会修改传入的引用或指针类型的参数,这样的参数应该为 const;</li>
+<li>尽可能将函数声明为 const, 访问函数应该总是 const, 其他函数如果不会修改任何数据成员也应该是const, 不要调用非 const 函数, 不要返回对数据成员的非 const 指针或引用;</li>
+<li>如果数据成员在对象构造之后不再改变,可将其定义为 const;</li>
+</ol>
+</li>
+<li><p>要使用精确位数的整型可使用 stdint.h 头文件中的 int16_t 等；不要使用无符号整型，使用断言 assert 声明变量为非负数</p>
+</li>
+<li><p>整数用 0, 实数用 0.0, 指针用 NULL, 字符(串)用’\0’。</p>
+</li>
+<li><p>尽可能用 sizeof(varname)代替 sizeof(type)。</p>
+</li>
+</ul>
+<h2 id="命名约定"><a href="#命名约定" class="headerlink" title="命名约定"></a>命名约定</h2><ul>
+<li><p>不要随意缩写，除函数名可适当为动词，其他命名尽量使用清晰易懂的名词</p>
+</li>
+<li><p>类型命名(class, struct, typedef, enum)，普通函数，常量(以k开头)每个单词以大写开头不包含下划线</p>
+</li>
+<li><p>宏、枚举值等全部使用大写加下划线</p>
+</li>
+<li><p>变量，文件名，命名空间，存取函数等使用小写字母加下划线，类成员变量以下划线结束，全局变量以g_开头</p>
+</li>
+</ul>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><ul>
+<li>文件注释：版权、许可版本、作者、文件内容</li>
+<li>类注释：每个类的定义要增加对其功能和用法的注释</li>
+<li>函数注释：<ol>
+<li>声明处：inputs(输入)及 outputs(输出)；如果函数分配了空间,需要由调用者释放；参数是否可以为 NULL；是否存在函数使用的性能隐忧(performance implications)</li>
+<li>定义处：函数功能和实现要点,如使用的漂亮代码、实现的简要步骤、<br>如此实现的理由、为什么前半部分要加锁而后半部分不需要。</li>
+</ol>
+</li>
+<li>TODO注释：// TODO(kl@gmail.com): Use a “*” here for concatenation operator.<br>// TODO(Zeke) change this to use relations.</li>
+</ul>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><ul>
+<li>只用空格，不要使用 tab，设定编译器将 tab 转为空格</li>
+<li>预处理指令和命名空间不使用额外缩进</li>
+<li>水平/垂直留白不要滥用</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="No. L WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="No. L Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/01/Emacs Markdown Mode/" rel="next" title="Emacs Markdown Mode">
+                <i class="fa fa-chevron-left"></i> Emacs Markdown Mode
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/05/vim 快捷键/" rel="prev" title="vim 快捷键">
+                vim 快捷键 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/10/07/Google C++ Code Style Notes/"
+     data-title="Google C++ Code Style Notes"
+     data-content=""
+     data-url="http://freealong.github.io/2015/10/07/Google C++ Code Style Notes/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/07/Google C++ Code Style Notes/"
+           data-title="Google C++ Code Style Notes" data-url="http://freealong.github.io/2015/10/07/Google C++ Code Style Notes/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="No. L" />
+          <p class="site-author-name" itemprop="name">No. L</p>
+          <p class="site-description motion-element" itemprop="description">The world is wide open.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/freealong" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2192566191" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Google-C-Code-Style-Notes"><span class="nav-number">1.</span> <span class="nav-text">Google C++ Code Style Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#头文件"><span class="nav-number">1.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">1.3.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-C-特性"><span class="nav-number">1.4.</span> <span class="nav-text">其他 C++ 特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名约定"><span class="nav-number">1.5.</span> <span class="nav-text">命名约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">1.6.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式"><span class="nav-number">1.7.</span> <span class="nav-text">格式</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">No. L</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"freealong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>
