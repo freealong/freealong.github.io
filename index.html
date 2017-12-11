@@ -254,6 +254,113 @@ MathJax.Hub.Config({
             
               
                 
+                <a class="post-title-link" href="/2017/12/11/开机自启程序/" itemprop="url">
+                  开机自启程序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-11T23:02:37+08:00" content="2017-12-11">
+              2017-12-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/12/11/开机自启程序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/11/开机自启程序/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          问题描述需要让工控机开机后自动进入打过实时补丁的内核版本，然后进入操作系统后自动运行需要sudo权限的codesys。
+解决方法设置grub默认启动项修改/etc/default/grub文件，将GRUB_DEFAULT=0修改为所需要的默认启动项，比如0表示自动进入grub启动项菜单的第一项，”1
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/12/11/开机自启程序/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/19/C-多线程编程笔记/" itemprop="url">
                   C++多线程编程笔记
                 </a>
@@ -879,7 +986,7 @@ Copy the entire
       
         
           
-          i3-wm配置文件中指定某些程序以floating形式打开时需要指定程序的class：for_window [class=”stardict”] floating enable程序的class可以通过xprox命令获得
+          i3-wm配置文件中指定某些程序以floating形式打开时需要指定程序的class：for_window [class=”stardict”] floating enable程序的class可以通过xprop命令获得
 
           
 
@@ -1449,113 +1556,6 @@ Next permutation问题描述就是求给定序列下一个排列组合，具体�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/01/Test-Blog/" itemprop="url">
-                  Test Blog
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-01T09:49:43+08:00" content="2016-10-01">
-              2016-10-01
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/01/Test-Blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/01/Test-Blog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          This a test blogHello World!
-TestTest Math equationinline equation: $a^2$, block equation:$$a^2 + b^2 = c^2$$\begin{equation}\sum_{i=0}^n{i^2}\end{equ
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/01/Test-Blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1601,7 +1601,7 @@ TestTest Math equationinline equation: $a^2$, block equation:$$a^2 + b^2 = c^2$$
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

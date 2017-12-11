@@ -72,7 +72,7 @@ MathJax.Hub.Config({
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -88,16 +88,18 @@ MathJax.Hub.Config({
 
 
 
-<meta name="description" content="The world is wide open.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yongqi&#39;s Blog">
-<meta property="og:url" content="http://freealong.github.io/tags/读书笔记/index.html">
+<meta name="description" content="问题描述需要让工控机开机后自动进入打过实时补丁的内核版本，然后进入操作系统后自动运行需要sudo权限的codesys。 解决方法设置grub默认启动项修改/etc/default/grub文件，将GRUB_DEFAULT=0修改为所需要的默认启动项，比如0表示自动进入grub启动项菜单的第一项，”1&amp;gt;2”">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开机自启程序">
+<meta property="og:url" content="http://freealong.github.io/2017/12/11/开机自启程序/index.html">
 <meta property="og:site_name" content="Yongqi&#39;s Blog">
-<meta property="og:description" content="The world is wide open.">
+<meta property="og:description" content="问题描述需要让工控机开机后自动进入打过实时补丁的内核版本，然后进入操作系统后自动运行需要sudo权限的codesys。 解决方法设置grub默认启动项修改/etc/default/grub文件，将GRUB_DEFAULT=0修改为所需要的默认启动项，比如0表示自动进入grub启动项菜单的第一项，”1&amp;gt;2”表示自动进入grub启动项菜单的第二项中子项目的第三项。 取消sudo密码想要自动运行需">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-11T15:14:39.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yongqi&#39;s Blog">
-<meta name="twitter:description" content="The world is wide open.">
+<meta name="twitter:title" content="开机自启程序">
+<meta name="twitter:description" content="问题描述需要让工控机开机后自动进入打过实时补丁的内核版本，然后进入操作系统后自动运行需要sudo权限的codesys。 解决方法设置grub默认启动项修改/etc/default/grub文件，将GRUB_DEFAULT=0修改为所需要的默认启动项，比如0表示自动进入grub启动项菜单的第一项，”1&amp;gt;2”表示自动进入grub启动项菜单的第二项中子项目的第三项。 取消sudo密码想要自动运行需">
 
 
 
@@ -118,10 +120,10 @@ MathJax.Hub.Config({
 
 
 
-  <link rel="canonical" href="http://freealong.github.io/tags/读书笔记/"/>
+  <link rel="canonical" href="http://freealong.github.io/2017/12/11/开机自启程序/"/>
 
 
-  <title> 标签: 读书笔记 | Yongqi's Blog </title>
+  <title> 开机自启程序 | Yongqi's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -142,7 +144,7 @@ MathJax.Hub.Config({
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -230,74 +232,173 @@ MathJax.Hub.Config({
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        读书笔记
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/17/影响力的武器/" itemprop="url">
-              
-                <span itemprop="name">影响力的武器</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-17T19:28:18+08:00"
-              content="2016-10-17" >
-          10-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2014/11/09/words/" itemprop="url">
-              
-                <span itemprop="name">Words Note</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2014-11-09T19:23:18+08:00"
-              content="2014-11-09" >
-          11-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                开机自启程序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-11T23:02:37+08:00" content="2017-12-11">
+              2017-12-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/12/11/开机自启程序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/11/开机自启程序/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>需要让工控机开机后自动进入打过实时补丁的内核版本，然后进入操作系统后自动运行需要sudo权限的codesys。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="设置grub默认启动项"><a href="#设置grub默认启动项" class="headerlink" title="设置grub默认启动项"></a>设置grub默认启动项</h3><p>修改/etc/default/grub文件，将GRUB_DEFAULT=0修改为所需要的默认启动项，比如0表示自动进入grub启动项菜单的第一项，”1&gt;2”表示自动进入grub启动项菜单的第二项中子项目的第三项。</p>
+<h3 id="取消sudo密码"><a href="#取消sudo密码" class="headerlink" title="取消sudo密码"></a>取消sudo密码</h3><p>想要自动运行需要sudo权限的程序，可以设置sudo命令不需要密码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure></p>
+<p>在文件最后添加如下内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username ALL=(ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure></p>
+<p>其中username为用户名</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="No. L WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="No. L Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/19/C-多线程编程笔记/" rel="next" title="C++多线程编程笔记">
+                <i class="fa fa-chevron-left"></i> C++多线程编程笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/12/11/开机自启程序/"
+     data-title="开机自启程序"
+     data-content=""
+     data-url="http://freealong.github.io/2017/12/11/开机自启程序/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -305,6 +406,14 @@ MathJax.Hub.Config({
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/12/11/开机自启程序/"
+           data-title="开机自启程序" data-url="http://freealong.github.io/2017/12/11/开机自启程序/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -324,8 +433,17 @@ MathJax.Hub.Config({
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -395,6 +513,17 @@ MathJax.Hub.Config({
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置grub默认启动项"><span class="nav-number">2.1.</span> <span class="nav-text">设置grub默认启动项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消sudo密码"><span class="nav-number">2.2.</span> <span class="nav-text">取消sudo密码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -498,6 +627,10 @@ MathJax.Hub.Config({
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
