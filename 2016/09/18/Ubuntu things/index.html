@@ -95,7 +95,7 @@ MathJax.Hub.Config({
 <meta property="og:site_name" content="Yongqi&#39;s Blog">
 <meta property="og:description" content="How to automatically bring an activated window to the foreground in Ubuntu?This behaviour can be changed from the command line, open a terminal and type:1dconf write /org/compiz/profiles/unity/plugins">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-01-02T13:22:22.000Z">
+<meta property="og:updated_time" content="2017-12-13T14:57:48.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu Things">
 <meta name="twitter:description" content="How to automatically bring an activated window to the foreground in Ubuntu?This behaviour can be changed from the command line, open a terminal and type:1dconf write /org/compiz/profiles/unity/plugins">
@@ -337,6 +337,17 @@ MathJax.Hub.Config({
 <p>now you can do everything you want.</p>
 <h1 id="Recode-keyboard-input-to-a-file"><a href="#Recode-keyboard-input-to-a-file" class="headerlink" title="Recode keyboard input to a file"></a>Recode keyboard input to a file</h1><p>recode keycode to key.log:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xinput <span class="keyword">list</span> | grep -Po 'id=\K\<span class="keyword">d</span>+(?=.*slave\s*keyboard)' | xargs -P0 -n1 xinput <span class="keyword">test</span> &gt; key.<span class="built_in">log</span></span><br><span class="line">convert keycode to keyname:</span><br><span class="line">awk 'BEGIN&#123;<span class="keyword">while</span> ((<span class="string">"xmodmap -pke"</span> | getline) &gt; 0) k[<span class="variable">$2</span>]=<span class="variable">$4&#125;</span> &#123;<span class="keyword">print</span> <span class="variable">$0</span> <span class="string">"["</span> k[<span class="variable">$NF</span>] <span class="string">"]"</span>&#125;' &lt; key.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="激活窗口不前置"><a href="#激活窗口不前置" class="headerlink" title="激活窗口不前置"></a>激活窗口不前置</h1><p>ubuntu下，比如当前已打开文件管理器，然后在浏览器中打开 Downloads文件夹目录时文件管理器不前置。<br>解决方法：<br>打开CompizConfig SettingManager，选择General Options，选择focus &amp; raise behavious 这个tab，将 focus prevention level 置为 off</p>
+<h1 id="Downgrade-a-package-via-apt-get"><a href="#Downgrade-a-package-via-apt-get" class="headerlink" title="Downgrade a package via apt-get"></a>Downgrade a package via apt-get</h1><ul>
+<li><p>Find package’s available versions</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-cache showpkg &lt;package-name&gt; <span class="comment"># list all available versions</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Downgrade the package to the available version</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install &lt;package-name&gt;=&lt;package-version-number&gt;</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo apt-get install -t=&lt;target release&gt; install &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Hold the package at the current version if necessary</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-mark hold &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -550,7 +561,7 @@ MathJax.Hub.Config({
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-automatically-bring-an-activated-window-to-the-foreground-in-Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">How to automatically bring an activated window to the foreground in Ubuntu?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Disable-ubuntu-internal-error-report"><span class="nav-number">2.</span> <span class="nav-text">Disable ubuntu internal error report</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forget-passwd"><span class="nav-number">3.</span> <span class="nav-text">Forget passwd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Recode-keyboard-input-to-a-file"><span class="nav-number">4.</span> <span class="nav-text">Recode keyboard input to a file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#激活窗口不前置"><span class="nav-number">5.</span> <span class="nav-text">激活窗口不前置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-automatically-bring-an-activated-window-to-the-foreground-in-Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">How to automatically bring an activated window to the foreground in Ubuntu?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Disable-ubuntu-internal-error-report"><span class="nav-number">2.</span> <span class="nav-text">Disable ubuntu internal error report</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forget-passwd"><span class="nav-number">3.</span> <span class="nav-text">Forget passwd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Recode-keyboard-input-to-a-file"><span class="nav-number">4.</span> <span class="nav-text">Recode keyboard input to a file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#激活窗口不前置"><span class="nav-number">5.</span> <span class="nav-text">激活窗口不前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Downgrade-a-package-via-apt-get"><span class="nav-number">6.</span> <span class="nav-text">Downgrade a package via apt-get</span></a></li></ol></div>
             
           </div>
         </section>
