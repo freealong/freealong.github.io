@@ -1,0 +1,711 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="latex," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在写毕业论文，偶尔会使用xfig画一些图，然后插入到论文中去，一般情况下直接在xfig中导出eps格式的图片，再在latex中插入即可，但是当所画的图要包含数学公式时，上述操作显然不可行，经过一番研究，找到了xifg和latex完美结合的方法。 打开xfig的specialtext选项可以在启动xfig时加入spe">
+<meta name="keywords" content="latex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xfig with latex">
+<meta property="og:url" content="http://freealong.github.io/2017/12/29/xfig-with-latex/index.html">
+<meta property="og:site_name" content="Yongqi&#39;s Blog">
+<meta property="og:description" content="最近在写毕业论文，偶尔会使用xfig画一些图，然后插入到论文中去，一般情况下直接在xfig中导出eps格式的图片，再在latex中插入即可，但是当所画的图要包含数学公式时，上述操作显然不可行，经过一番研究，找到了xifg和latex完美结合的方法。 打开xfig的specialtext选项可以在启动xfig时加入specialtext选项使得xfig给每个文本框设置一个special flag，个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-01T13:50:29.424Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xfig with latex">
+<meta name="twitter:description" content="最近在写毕业论文，偶尔会使用xfig画一些图，然后插入到论文中去，一般情况下直接在xfig中导出eps格式的图片，再在latex中插入即可，但是当所画的图要包含数学公式时，上述操作显然不可行，经过一番研究，找到了xifg和latex完美结合的方法。 打开xfig的specialtext选项可以在启动xfig时加入specialtext选项使得xfig给每个文本框设置一个special flag，个">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://freealong.github.io/2017/12/29/xfig-with-latex/"/>
+
+
+  <title> xfig with latex | Yongqi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Yongqi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                xfig with latex
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-29T16:07:31+08:00" content="2017-12-29">
+              2017-12-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/12/29/xfig-with-latex/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/29/xfig-with-latex/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在写毕业论文，偶尔会使用xfig画一些图，然后插入到论文中去，一般情况下直接在xfig中导出eps格式的图片，再在latex中插入即可，但是当所画的图要包含数学公式时，上述操作显然不可行，经过一番研究，找到了xifg和latex完美结合的方法。</p>
+<h1 id="打开xfig的specialtext选项"><a href="#打开xfig的specialtext选项" class="headerlink" title="打开xfig的specialtext选项"></a>打开xfig的specialtext选项</h1><p>可以在启动xfig时加入specialtext选项使得xfig给每个文本框设置一个special flag，个人添加的启动参数如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfig -specialtext -latexfonts -startlatexFont default</span><br></pre></td></tr></table></figure></p>
+<p>方便起见，个人在所使用的shell配置文件.zshrc中添加了别名：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> xfig=<span class="string">"xfig -specialtext -latexfonts -startlatexFont default"</span></span><br></pre></td></tr></table></figure></p>
+<p>当然如果不增加启动参数，也可以进入xfig后进行设置，选择文本工具后软件底部会出现相应的配置。</p>
+<h1 id="xfig中导出latex编译所需文件"><a href="#xfig中导出latex编译所需文件" class="headerlink" title="xfig中导出latex编译所需文件"></a>xfig中导出latex编译所需文件</h1><p>画完一张图后，在xfig中导出时选择”Combined PS/LaTeX (both parts)”，这会导出两个文件:filename.pstex和filename.pstex_t，这两个文件是后面使用latex编译生成支持数学公式的图片所需的。</p>
+<h1 id="使用latex编译生成所需图片"><a href="#使用latex编译生成所需图片" class="headerlink" title="使用latex编译生成所需图片"></a>使用latex编译生成所需图片</h1><p>新建一个temp.tex，插入以下文本:<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">documentclass</span><span class="string">[12pt]</span><span class="string">&#123;article&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;amssymb,amsmath,graphics,epsfig,color&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">pagestyle</span><span class="string">&#123;empty&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;figure&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">input</span><span class="string">&#123;filename.pstex_t&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;figure&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>上述tex文件包含了从xfig中导出的文件，然后使用xelatex编译即可得到所需的图片。</p>
+<h1 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h1><p>当然上述操作还是相对繁琐的，因此写了个xfig2eps的bash脚本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">TMP_DIR=/tmp</span><br><span class="line">cp <span class="variable">$1</span>.pstex_t <span class="variable">$TMP_DIR</span>/temp.pstex_t</span><br><span class="line">cp <span class="variable">$1</span>.pstex <span class="variable">$TMP_DIR</span>/</span><br><span class="line"><span class="built_in">echo</span> -E <span class="string">"\documentclass[12pt,twoside]&#123;article&#125;</span></span><br><span class="line"><span class="string">\usepackage&#123;amssymb,amsmath,graphics,epsfig,color&#125;</span></span><br><span class="line"><span class="string">\usepackage&#123;tensor, bm&#125;</span></span><br><span class="line"><span class="string">\pagestyle&#123;empty&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">\begin&#123;document&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">\begin&#123;figure&#125;</span></span><br><span class="line"><span class="string">\input&#123;temp.pstex_t&#125;</span></span><br><span class="line"><span class="string">\end&#123;figure&#125;</span></span><br><span class="line"><span class="string">\end&#123;document&#125;"</span> &gt; <span class="variable">$TMP_DIR</span>/xfig_to_eps.tex</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$TMP_DIR</span></span><br><span class="line">latex xfig_to_eps.tex &gt; /dev/null &amp;&amp; dvips -E -o xfig_to_eps.eps xfig_to_eps.dvi &gt; /dev/null</span><br><span class="line">result=$? </span><br><span class="line">rm temp.pstex_t <span class="variable">$1</span>.pstex xfig_to_eps.tex xfig_to_eps.dvi xfig_to_eps.aux xfig_to_eps.log &gt; /dev/null</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$result</span>"</span> == 0  ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">cd</span> - &gt; /dev/null</span><br><span class="line">  mv <span class="variable">$TMP_DIR</span>/xfig_to_eps.eps <span class="variable">$1</span>.eps</span><br><span class="line">  rm <span class="variable">$1</span>.pstex_t <span class="variable">$1</span>.pstex</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">cd</span> - &gt; /dev/null</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"convert failed"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<p>如下运行脚本，就可以在当前目录得到名为filename.eps的图片:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfig2eps filename <span class="comment"># make sure filename.pstex and filename.pstex is under current directory</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="xfig中字体大小显示不正确的问题"><a href="#xfig中字体大小显示不正确的问题" class="headerlink" title="xfig中字体大小显示不正确的问题"></a>xfig中字体大小显示不正确的问题</h1><p>使用xfig过程中，发现改变字体大小，画图过程中显示的字体大小永远不变，但是导出的图片中字体的大小是正确的，解决方式是安装gsfonts-x11。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="No. L WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="No. L Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/latex/" rel="tag">#latex</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/19/C-多线程编程笔记/" rel="next" title="C++多线程编程笔记">
+                <i class="fa fa-chevron-left"></i> C++多线程编程笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/01/mendeley-fcitx/" rel="prev" title="Mendeley can't use fcitx">
+                Mendeley can't use fcitx <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/12/29/xfig-with-latex/"
+     data-title="xfig with latex"
+     data-content=""
+     data-url="http://freealong.github.io/2017/12/29/xfig-with-latex/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/12/29/xfig-with-latex/"
+           data-title="xfig with latex" data-url="http://freealong.github.io/2017/12/29/xfig-with-latex/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="No. L" />
+          <p class="site-author-name" itemprop="name">No. L</p>
+          <p class="site-description motion-element" itemprop="description">The world is wide open.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/freealong" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2192566191" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#打开xfig的specialtext选项"><span class="nav-number">1.</span> <span class="nav-text">打开xfig的specialtext选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xfig中导出latex编译所需文件"><span class="nav-number">2.</span> <span class="nav-text">xfig中导出latex编译所需文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用latex编译生成所需图片"><span class="nav-number">3.</span> <span class="nav-text">使用latex编译生成所需图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自动化"><span class="nav-number">4.</span> <span class="nav-text">自动化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xfig中字体大小显示不正确的问题"><span class="nav-number">5.</span> <span class="nav-text">xfig中字体大小显示不正确的问题</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">No. L</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"freealong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

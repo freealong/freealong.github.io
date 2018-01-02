@@ -254,8 +254,8 @@ MathJax.Hub.Config({
             
               
                 
-                <a class="post-title-link" href="/2017/12/11/开机自启程序/" itemprop="url">
-                  开机自启程序
+                <a class="post-title-link" href="/2018/01/01/mendeley-fcitx/" itemprop="url">
+                  Mendeley can't use fcitx
                 </a>
               
             
@@ -268,8 +268,8 @@ MathJax.Hub.Config({
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-11T23:02:37+08:00" content="2017-12-11">
-              2017-12-11
+            <time itemprop="dateCreated" datetime="2018-01-01T23:56:13+08:00" content="2018-01-01">
+              2018-01-01
             </time>
           </span>
 
@@ -279,8 +279,8 @@ MathJax.Hub.Config({
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/12/11/开机自启程序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/11/开机自启程序/" itemprop="commentsCount"></span>
+                <a href="/2018/01/01/mendeley-fcitx/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/01/01/mendeley-fcitx/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -305,12 +305,121 @@ MathJax.Hub.Config({
       
         
           
-          问题描述需要让工控机开机后自动进入打过实时补丁的内核版本，然后进入操作系统后自动运行需要sudo权限的codesys。
-解决方法设置grub默认启动项修改/etc/default/grub文件，将GRUB_DEFAULT=0修改为所需要的默认启动项，比如0表示自动进入grub启动项菜单的第一项，”1
+          使用Mendeley时发现无法使用fcitx输入法，原因是Mendeley使用了自己的Qt5的库，但没有提供fcitx的qt插件（ibus有）。参考yinflying的博客自己修改了Mendeley的debain包。
+修改的debain包的地方有：
+
+将lib/qt 下的库替换成了从官网下的Qt5.
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/12/11/开机自启程序/#more" rel="contents">
+            <a class="btn" href="/2018/01/01/mendeley-fcitx/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/29/xfig-with-latex/" itemprop="url">
+                  xfig with latex
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-29T16:07:31+08:00" content="2017-12-29">
+              2017-12-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/12/29/xfig-with-latex/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/29/xfig-with-latex/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          最近在写毕业论文，偶尔会使用xfig画一些图，然后插入到论文中去，一般情况下直接在xfig中导出eps格式的图片，再在latex中插入即可，但是当所画的图要包含数学公式时，上述操作显然不可行，经过一番研究，找到了xifg和latex完美结合的方法。
+打开xfig的specialtext选项可以在启动
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/12/29/xfig-with-latex/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1425,137 +1534,6 @@ Next permutation问题描述就是求给定序列下一个排列组合，具体�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/01/Begin-again/" itemprop="url">
-                  Begin again
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-01T13:39:46+08:00" content="2016-10-01">
-              2016-10-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index">
-                    <span itemprop="name">Life</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/01/Begin-again/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/01/Begin-again/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          事实上, 该想的, 该写的, 该说的, 都已做过. 所以就这样罢.
-天不老, 情难绝
-
-云淡风轻For the first time of years, the world is wide open. 
-
-祝, 安好
-
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/01/Begin-again/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1618,7 +1596,7 @@ Next permutation问题描述就是求给定序列下一个排列组合，具体�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1675,7 +1653,7 @@ Next permutation问题描述就是求给定序列下一个排列组合，具体�
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

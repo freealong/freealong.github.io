@@ -95,7 +95,7 @@ MathJax.Hub.Config({
 <meta property="og:site_name" content="Yongqi&#39;s Blog">
 <meta property="og:description" content="How to automatically bring an activated window to the foreground in Ubuntu?This behaviour can be changed from the command line, open a terminal and type:1dconf write /org/compiz/profiles/unity/plugins">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-13T14:57:48.049Z">
+<meta property="og:updated_time" content="2017-12-31T15:35:35.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu Things">
 <meta name="twitter:description" content="How to automatically bring an activated window to the foreground in Ubuntu?This behaviour can be changed from the command line, open a terminal and type:1dconf write /org/compiz/profiles/unity/plugins">
@@ -332,11 +332,11 @@ MathJax.Hub.Config({
       
         <h1 id="How-to-automatically-bring-an-activated-window-to-the-foreground-in-Ubuntu"><a href="#How-to-automatically-bring-an-activated-window-to-the-foreground-in-Ubuntu" class="headerlink" title="How to automatically bring an activated window to the foreground in Ubuntu?"></a>How to automatically bring an activated window to the foreground in Ubuntu?</h1><p>This behaviour can be changed from the command line, open a terminal and type:<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dconf <span class="keyword">write</span> <span class="regexp">/org/</span>compiz<span class="regexp">/profiles/u</span>nity<span class="regexp">/plugins/</span>core<span class="regexp">/focus-prevention-level 0</span></span><br></pre></td></tr></table></figure></p>
 <p>To restore the default value:<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dconf <span class="keyword">write</span> <span class="regexp">/org/</span>compiz<span class="regexp">/profiles/u</span>nity<span class="regexp">/plugins/</span>core<span class="regexp">/focus-prevention-level 1</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="激活窗口不前置"><a href="#激活窗口不前置" class="headerlink" title="激活窗口不前置"></a>激活窗口不前置</h1><p>ubuntu下，比如当前已打开文件管理器，然后在浏览器中打开 Downloads文件夹目录时文件管理器不前置。<br>解决方法：<br>打开CompizConfig SettingManager，选择General Options，选择focus &amp; raise behavious 这个tab，将 focus prevention level 置为 off</p>
 <h1 id="Disable-ubuntu-internal-error-report"><a href="#Disable-ubuntu-internal-error-report" class="headerlink" title="Disable ubuntu internal error report"></a>Disable ubuntu internal error report</h1><p>just disable the apport:<br>open /etc/default/apport<br>then change enable=1 to enable=0</p>
 <h1 id="Forget-passwd"><a href="#Forget-passwd" class="headerlink" title="Forget passwd"></a>Forget passwd</h1><p>boot into recovery mode, choose “drop to root shell prompt”<br>remount it with write permissions:<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mount</span> -rw -o remount /</span><br></pre></td></tr></table></figure></p>
 <p>now you can do everything you want.</p>
 <h1 id="Recode-keyboard-input-to-a-file"><a href="#Recode-keyboard-input-to-a-file" class="headerlink" title="Recode keyboard input to a file"></a>Recode keyboard input to a file</h1><p>recode keycode to key.log:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xinput <span class="keyword">list</span> | grep -Po 'id=\K\<span class="keyword">d</span>+(?=.*slave\s*keyboard)' | xargs -P0 -n1 xinput <span class="keyword">test</span> &gt; key.<span class="built_in">log</span></span><br><span class="line">convert keycode to keyname:</span><br><span class="line">awk 'BEGIN&#123;<span class="keyword">while</span> ((<span class="string">"xmodmap -pke"</span> | getline) &gt; 0) k[<span class="variable">$2</span>]=<span class="variable">$4&#125;</span> &#123;<span class="keyword">print</span> <span class="variable">$0</span> <span class="string">"["</span> k[<span class="variable">$NF</span>] <span class="string">"]"</span>&#125;' &lt; key.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="激活窗口不前置"><a href="#激活窗口不前置" class="headerlink" title="激活窗口不前置"></a>激活窗口不前置</h1><p>ubuntu下，比如当前已打开文件管理器，然后在浏览器中打开 Downloads文件夹目录时文件管理器不前置。<br>解决方法：<br>打开CompizConfig SettingManager，选择General Options，选择focus &amp; raise behavious 这个tab，将 focus prevention level 置为 off</p>
 <h1 id="Downgrade-a-package-via-apt-get"><a href="#Downgrade-a-package-via-apt-get" class="headerlink" title="Downgrade a package via apt-get"></a>Downgrade a package via apt-get</h1><ul>
 <li><p>Find package’s available versions</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-cache showpkg &lt;package-name&gt; <span class="comment"># list all available versions</span></span><br></pre></td></tr></table></figure>
@@ -348,6 +348,7 @@ MathJax.Hub.Config({
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-mark hold &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h1 id="Exact-and-compress-a-debian-package"><a href="#Exact-and-compress-a-debian-package" class="headerlink" title="Exact and compress a debian package"></a>Exact and compress a debian package</h1><p>using dpkg-deb:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># exact</span></span><br><span class="line">dpkg-deb -R package-name.deb target_directory</span><br><span class="line"><span class="comment"># compress</span></span><br><span class="line">dpkg-deb -b target_directory package-name</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -402,8 +403,8 @@ MathJax.Hub.Config({
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/01/Test-Blog/" rel="prev" title="Test Blog">
-                Test Blog <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/01/Begin-again/" rel="prev" title="Begin again">
+                Begin again <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -512,7 +513,7 @@ MathJax.Hub.Config({
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -561,7 +562,7 @@ MathJax.Hub.Config({
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-automatically-bring-an-activated-window-to-the-foreground-in-Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">How to automatically bring an activated window to the foreground in Ubuntu?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Disable-ubuntu-internal-error-report"><span class="nav-number">2.</span> <span class="nav-text">Disable ubuntu internal error report</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forget-passwd"><span class="nav-number">3.</span> <span class="nav-text">Forget passwd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Recode-keyboard-input-to-a-file"><span class="nav-number">4.</span> <span class="nav-text">Recode keyboard input to a file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#激活窗口不前置"><span class="nav-number">5.</span> <span class="nav-text">激活窗口不前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Downgrade-a-package-via-apt-get"><span class="nav-number">6.</span> <span class="nav-text">Downgrade a package via apt-get</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-automatically-bring-an-activated-window-to-the-foreground-in-Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">How to automatically bring an activated window to the foreground in Ubuntu?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#激活窗口不前置"><span class="nav-number">2.</span> <span class="nav-text">激活窗口不前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Disable-ubuntu-internal-error-report"><span class="nav-number">3.</span> <span class="nav-text">Disable ubuntu internal error report</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forget-passwd"><span class="nav-number">4.</span> <span class="nav-text">Forget passwd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Recode-keyboard-input-to-a-file"><span class="nav-number">5.</span> <span class="nav-text">Recode keyboard input to a file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Downgrade-a-package-via-apt-get"><span class="nav-number">6.</span> <span class="nav-text">Downgrade a package via apt-get</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exact-and-compress-a-debian-package"><span class="nav-number">7.</span> <span class="nav-text">Exact and compress a debian package</span></a></li></ol></div>
             
           </div>
         </section>
@@ -580,7 +581,7 @@ MathJax.Hub.Config({
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
