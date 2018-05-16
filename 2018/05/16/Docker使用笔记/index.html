@@ -72,7 +72,7 @@ MathJax.Hub.Config({
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -88,18 +88,17 @@ MathJax.Hub.Config({
 
 
 
-<meta name="description" content="MBR是Master Boot Record的简称,又叫主引导记录.它是硬盘上最重要的一个数据结构,当用分区软件创建分区的时候,分区软件会自动创建MBR.MBR处于硬盘的第一个 扇区.即0柱面,0磁头,1扇区.主引导记录由三部分构成,第一部分是一小段执行代码,共446字节，第二部分是64字节的分区表,第三部分是系统标志">
-<meta name="keywords" content="Linux">
+<meta name="description" content="InstallationDocker is available in two editions:  Community Edition(CE) Enterprise Edition(EE)  Before installation, remove old version :1sudo apt-get remove do">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux下MBR的备份与恢复">
-<meta property="og:url" content="http://freealong.github.io/2014/11/12/Linux下MBR的备份与恢复/index.html">
+<meta property="og:title" content="Docker使用笔记">
+<meta property="og:url" content="http://freealong.github.io/2018/05/16/Docker使用笔记/index.html">
 <meta property="og:site_name" content="Yongqi&#39;s Blog">
-<meta property="og:description" content="MBR是Master Boot Record的简称,又叫主引导记录.它是硬盘上最重要的一个数据结构,当用分区软件创建分区的时候,分区软件会自动创建MBR.MBR处于硬盘的第一个 扇区.即0柱面,0磁头,1扇区.主引导记录由三部分构成,第一部分是一小段执行代码,共446字节，第二部分是64字节的分区表,第三部分是系统标志,一般为 55AA（两个字节）.在基于X86的计算机上,可执行代码检查分区表的合">
+<meta property="og:description" content="InstallationDocker is available in two editions:  Community Edition(CE) Enterprise Edition(EE)  Before installation, remove old version :1sudo apt-get remove docker docker-engine docker.io Then insall">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-01-02T13:35:36.000Z">
+<meta property="og:updated_time" content="2018-05-16T13:41:33.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下MBR的备份与恢复">
-<meta name="twitter:description" content="MBR是Master Boot Record的简称,又叫主引导记录.它是硬盘上最重要的一个数据结构,当用分区软件创建分区的时候,分区软件会自动创建MBR.MBR处于硬盘的第一个 扇区.即0柱面,0磁头,1扇区.主引导记录由三部分构成,第一部分是一小段执行代码,共446字节，第二部分是64字节的分区表,第三部分是系统标志,一般为 55AA（两个字节）.在基于X86的计算机上,可执行代码检查分区表的合">
+<meta name="twitter:title" content="Docker使用笔记">
+<meta name="twitter:description" content="InstallationDocker is available in two editions:  Community Edition(CE) Enterprise Edition(EE)  Before installation, remove old version :1sudo apt-get remove docker docker-engine docker.io Then insall">
 
 
 
@@ -120,10 +119,10 @@ MathJax.Hub.Config({
 
 
 
-  <link rel="canonical" href="http://freealong.github.io/2014/11/12/Linux下MBR的备份与恢复/"/>
+  <link rel="canonical" href="http://freealong.github.io/2018/05/16/Docker使用笔记/"/>
 
 
-  <title> Linux下MBR的备份与恢复 | Yongqi's Blog </title>
+  <title> Docker使用笔记 | Yongqi's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +252,7 @@ MathJax.Hub.Config({
             
             
               
-                Linux下MBR的备份与恢复
+                Docker使用笔记
               
             
           </h1>
@@ -265,50 +264,19 @@ MathJax.Hub.Config({
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-12T15:33:02+08:00" content="2014-11-12">
-              2014-11-12
+            <time itemprop="dateCreated" datetime="2018-05-16T09:29:59+08:00" content="2018-05-16">
+              2018-05-16
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Technology/" itemprop="url" rel="index">
-                    <span itemprop="name">Technology</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Technology/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/11/12/Linux下MBR的备份与恢复/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/12/Linux下MBR的备份与恢复/" itemprop="commentsCount"></span>
+                <a href="/2018/05/16/Docker使用笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/16/Docker使用笔记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,11 +299,52 @@ MathJax.Hub.Config({
       
 
       
-        <p>MBR是Master Boot Record的简称,又叫主引导记录.它是硬盘上最重要的一个数据结构,当用分区软件创建分区的时候,分区软件会自动创建MBR.MBR处于硬盘的第一个 扇区.即0柱面,0磁头,1扇区.主引导记录由三部分构成,第一部分是一小段执行代码,共446字节，第二部分是64字节的分区表,第三部分是系统标志,一般为 55AA（两个字节）.在基于X86的计算机上,可执行代码检查分区表的合法性,同时查找系统分区.找到系统分区后,MBR读取系统分区的第一个扇区,也就是分区引导 扇区到内存,然后把代码控制权交给分区引导扇区.</p>
-<p>在Linux备份或恢复MBR的方法很简单。<br>备份MBR分区法份方法如下：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/dev/sda <span class="attribute">of</span>=/root/mbr <span class="attribute">bs</span>=512 <span class="attribute">count</span>=1</span><br></pre></td></tr></table></figure></p>
-<p>恢复MBR<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/root/mbr <span class="attribute">of</span>=/dev/sda <span class="attribute">bs</span>=512 <span class="attribute">count</span>=1</span><br></pre></td></tr></table></figure></p>
-<p>硬盘的分区表是存放在硬盘的446字节开始的64个字节中，如果只想备份硬盘分区表的方法如下:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/dev/sda1 <span class="attribute">of</span>=/root/mbr <span class="attribute">bs</span>=1 <span class="attribute">skip</span>=446 <span class="attribute">count</span>=64</span><br></pre></td></tr></table></figure></p>
-<p>恢复分区表的方法如下：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/root/mbr <span class="attribute">of</span>=/dev/sda1 <span class="attribute">bs</span>=1 <span class="attribute">skip</span>=446 <span class="attribute">count</span>=64</span><br></pre></td></tr></table></figure></p>
+        <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Docker is available in two editions:</p>
+<ul>
+<li>Community Edition(CE)</li>
+<li>Enterprise Edition(EE)</li>
+</ul>
+<p>Before installation, remove old version :<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> <span class="builtin-name">remove</span> docker docker-engine docker.io</span><br></pre></td></tr></table></figure></p>
+<p>Then insall a edition follow the official document. If you want to use NVIDIA GPU, you should also install nvidia-docker</p>
+<h1 id="Build-Docker-Image"><a href="#Build-Docker-Image" class="headerlink" title="Build Docker Image"></a>Build Docker Image</h1><p>There two ways to build a docker image: writing a dockerfile or operating inside a base docker image.</p>
+<h2 id="Writing-a-docker-image"><a href="#Writing-a-docker-image" class="headerlink" title="Writing a docker image"></a>Writing a docker image</h2><ul>
+<li><p>A example dockerfile is as follow:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># base image</span></span><br><span class="line"><span class="keyword">FROM</span> nvida/cuda:8.0-cudnn5-devel-ubuntu16.04</span><br><span class="line"></span><br><span class="line"><span class="comment"># operate inside the base image</span></span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> update &amp;&amp; apt-<span class="builtin-name">get</span> install -y \</span><br><span class="line">    build-essential \</span><br><span class="line">    <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>After finish the dockerfile, we can build our own docker image:</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker build -t &lt;<span class="built_in">IMAGE</span> <span class="built_in">NAME</span>&gt; -f &lt;DOCKERFILE <span class="built_in">NAME</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>If no error occurs, we should see our IMAGE NAME through</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nvidia-docker images</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>After we build the image, we can save the image to a tar file:</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker save &lt;IMAGE <span class="keyword">NAME</span> <span class="keyword">or</span> ID&gt; &gt; &lt;TAR <span class="keyword">FILE</span> <span class="keyword">NAME</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Operating-inside-a-base-docker-image"><a href="#Operating-inside-a-base-docker-image" class="headerlink" title="Operating inside a base docker image"></a>Operating inside a base docker image</h2><ul>
+<li><p>Get a base image from docker hub, here we use a ubuntu16.04 with cuda8-cudnn5 image</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker pull nvidia/<span class="string">cuda:</span><span class="number">8.0</span>-cudnn5-devel-ubuntu16<span class="number">.04</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Run the base image in a container and do some experiments</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker <span class="built_in">run</span> -<span class="keyword">it</span> &lt;BASE IMAGE NAME <span class="keyword">or</span> ID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>After doing some experiments inside the container, we can do commits to save the modifications into a new image</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker ps -a # <span class="keyword">to</span> show all containers</span><br><span class="line">nvidia-docker commit &lt;CONTAINER ID&gt; &lt;IMAGE <span class="keyword">NAME</span>&gt;:&lt;TAG <span class="keyword">NAME</span>&gt; # <span class="keyword">if</span> no TAG <span class="keyword">NAME</span> provided, TAG <span class="keyword">NAME</span> <span class="keyword">is</span> <span class="keyword">set</span> <span class="keyword">to</span> latest</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Run-a-docker"><a href="#Run-a-docker" class="headerlink" title="Run a docker"></a>Run a docker</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker load -i &lt;TAR FILE NAME&gt; <span class="comment"># load a docker image from a tar file</span></span><br><span class="line">nvidia-docker images <span class="comment"># check the loaded image id or name</span></span><br><span class="line">nvidia-docker run -it -v &lt;HOST DIR&gt;:&lt;DIR INSIDE CONTAINER&gt; &lt;IMAGE NAME or ID&gt; --name &lt;CONTAINER NAME&gt; <span class="comment"># -v mount the host dir to container</span></span><br><span class="line"><span class="keyword">exit</span> <span class="comment"># exit the container</span></span><br></pre></td></tr></table></figure>
+<p>If you want to run the container again:<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker ps -<span class="keyword">a</span> <span class="comment"># check the container id</span></span><br><span class="line">nvidia-docker <span class="built_in">start</span> &lt;CONTAINER ID <span class="keyword">or</span> NAME&gt;</span><br><span class="line">nvidia-docker attach &lt;CONAINER ID <span class="keyword">or</span> NAME&gt; <span class="comment"># we are inside the container again</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Extra-note"><a href="#Extra-note" class="headerlink" title="Extra note"></a>Extra note</h1><ul>
+<li><p>copy files between host and container</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker cp &lt;FILENAME&gt; &lt;CONTAINER NAME <span class="keyword">or</span> ID&gt;<span class="symbol">:/&lt;FILENAME&gt;</span></span><br><span class="line">nvidia-docker cp &lt;CONTAINER NAME <span class="keyword">or</span> ID&gt;<span class="symbol">:/&lt;FILENAME&gt;</span> &lt;FILENAME&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>remove container</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docer rm &lt;CONTAINER <span class="keyword">NAME</span> <span class="keyword">or</span> ID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>remove image</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docer rmi &lt;<span class="built_in">IMAGE</span> <span class="built_in">NAME</span> <span class="built_in">or</span> ID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -377,28 +386,18 @@ MathJax.Hub.Config({
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag">#Linux</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/11/09/words/" rel="next" title="Words Note">
-                <i class="fa fa-chevron-left"></i> Words Note
+              <a href="/2018/01/01/mendeley-fcitx/" rel="next" title="Mendeley can't use fcitx">
+                <i class="fa fa-chevron-left"></i> Mendeley can't use fcitx
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/11/27/wget下载整个站点/" rel="prev" title="wget下载整个站点">
-                wget下载整个站点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -413,10 +412,10 @@ MathJax.Hub.Config({
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2014/11/12/Linux下MBR的备份与恢复/"
-     data-title="Linux下MBR的备份与恢复"
+        <div class="ds-share flat" data-thread-key="2018/05/16/Docker使用笔记/"
+     data-title="Docker使用笔记"
      data-content=""
-     data-url="http://freealong.github.io/2014/11/12/Linux下MBR的备份与恢复/">
+     data-url="http://freealong.github.io/2018/05/16/Docker使用笔记/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -443,8 +442,8 @@ MathJax.Hub.Config({
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2014/11/12/Linux下MBR的备份与恢复/"
-           data-title="Linux下MBR的备份与恢复" data-url="http://freealong.github.io/2014/11/12/Linux下MBR的备份与恢复/">
+      <div class="ds-thread" data-thread-key="2018/05/16/Docker使用笔记/"
+           data-title="Docker使用笔记" data-url="http://freealong.github.io/2018/05/16/Docker使用笔记/">
       </div>
     
   </div>
@@ -555,7 +554,7 @@ MathJax.Hub.Config({
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Build-Docker-Image"><span class="nav-number">2.</span> <span class="nav-text">Build Docker Image</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-a-docker-image"><span class="nav-number">2.1.</span> <span class="nav-text">Writing a docker image</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operating-inside-a-base-docker-image"><span class="nav-number">2.2.</span> <span class="nav-text">Operating inside a base docker image</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Run-a-docker"><span class="nav-number">3.</span> <span class="nav-text">Run a docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Extra-note"><span class="nav-number">4.</span> <span class="nav-text">Extra note</span></a></li></ol></div>
             
           </div>
         </section>
